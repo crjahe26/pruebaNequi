@@ -38,10 +38,50 @@ Todos los pasos anteriores los fui explicando en el notebook mencionado.
 	
 2. Diseñar la arquitectura y los recursos utilizados.
 	
+	![Arquitectura](./images/arquitectura.png)
+	<br>
 3. Indique claramente los motivos de la elección de las herramientas y tecnologías para el proyecto.
+	Elegí herramientas como python, google colab porque python es el lenguaje recomendado por el documento de la prueba técnica y porque es un lenguaje que manejo bastante bien, el uso de google colab es debido a que me parece una herramienta sencilla de usar y que estoy acostumbrado a ella.
+	<br>
+	Por otro lado respecto a las tecnologías y herramientas utilizadas para la creación y ejecución del ETL, Amazon S3 ofrece ventajas como una gran escalabilidad, economía y me permite modularidad en la arquitectura, por otro lado el uso de AWS Glue, permite que realice la transformación de los datos de forma sencilla con algunas transformaciones sencillas, pero a la vez me permite usar transformaciones a partir de SQL cosa que AWS Glue Databreaw no me permite, adicionalmente son herramientas que me permiten realizar una buena integración con otras herramientas de AWS como Athena, Redshift o QuickSight, para poder consultar, analizar y visualizar  los datos y también son herramientas con mucha documentación y videos que podrían ayudar en caso de encontrarme con algún imprevisto.
 
 4. Proponga con qué frecuencia deben actualizarse los datos y por qué.
 	La frecuencia de actualización de los datos depende de la disponibilidad y la actualización de los mismos, en este caso como estamos hablando de transacciones realizadas por los clientes de un banco lo más recomendable sería tener una actualización lo más cercano al tiempo real, es decir, en intervalos de pocos minutos o hasta segundos, pero en este caso como el objetivo del proyecto es el **Análisis de comportamiento de gastos según la edad y género de los clientes** no es primordial contar con la actualización de manera frecuente, en un principio se podrían realizar análisis con una muestra de los datos y posterior a ello cuando ya se tenga un análisis completamente estructurado, se pueden realizar actualizaciones periódicas.
+
+# Paso 4: Ejecutar la ETL
+
+	
+
+	Para la ejecución del ETL guarde los datos en un bucket S3.
+
+	![Bucket de S3](./images/bucketS3.png)
+
+	Despues realice la creación de la base de datos, la tabla que sería nuestro dataset y el crawler.
+
+	![Nequi base de datos](./images/nequiDatabase.png)
+	![Nequi Crawler](./images/nequiCrawler.png)
+
+	Esta es una vista de toda la transformación en general, para esta se realizó la limpieza de datos de forma similar a como lo hicimos en el archivo "Paso2.ipynb".
+
+	![Transformacion Completa](./images/transformacionCompleta.png)
+
+	Ya en glue studio extraje la información en dos dandole manejo a la información que es del cliente y la que es para transacciones.
+
+	![Doble Fuente](./images/dobleFuente.png)
+
+	Aquí se puede ver un poco de las consultas realizadas.
+
+	![Consultas Realizadas](./images/consultasRealizadas.png)
+
+	Posteriormente realice la unión a través de la columna CustomerID, para realizar el calculo de la edad de los clientes al momento de realizar la transacción.
+
+	![Creacion De Columna Edad](./images/creacionDeColumnaEdad.png)
+
+	Finalmente llevé la data procesada a un bucket de S3, en la imagen se puede ver que los datos llegaron correctamente formateados y con las columnas tal como las necesitamos.
+
+	![Ejecucion En S3](./images/ejecucionEnS3.png)
+
+
 
 
 # Paso 5: Completar la redacción del proyecto
