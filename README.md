@@ -50,36 +50,33 @@ Todos los pasos anteriores los fui explicando en el notebook mencionado.
 
 # Paso 4: Ejecutar la ETL
 
-	
+Para la ejecución del ETL guarde los datos en un bucket S3.
+![Bucket de S3](./images/bucketS3.png)
 
-	Para la ejecución del ETL guarde los datos en un bucket S3.
+Despues realice la creación de la base de datos, la tabla que sería nuestro dataset y el crawler.
 
-	![Bucket de S3](./images/bucketS3.png)
+![Nequi base de datos](./images/nequiDatabase.png)
+![Nequi Crawler](./images/nequiCrawler.png)
 
-	Despues realice la creación de la base de datos, la tabla que sería nuestro dataset y el crawler.
+Esta es una vista de toda la transformación en general, para esta se realizó la limpieza de datos de forma similar a como lo hicimos en el archivo "Paso2.ipynb".
 
-	![Nequi base de datos](./images/nequiDatabase.png)
-	![Nequi Crawler](./images/nequiCrawler.png)
+![Transformacion Completa](./images/transformacionCompleta.png)
 
-	Esta es una vista de toda la transformación en general, para esta se realizó la limpieza de datos de forma similar a como lo hicimos en el archivo "Paso2.ipynb".
+Ya en glue studio extraje la información en dos dandole manejo a la información que es del cliente y la que es para transacciones.
 
-	![Transformacion Completa](./images/transformacionCompleta.png)
+![Doble Fuente](./images/dobleFuente.png)
 
-	Ya en glue studio extraje la información en dos dandole manejo a la información que es del cliente y la que es para transacciones.
+Aquí se puede ver un poco de las consultas realizadas.
 
-	![Doble Fuente](./images/dobleFuente.png)
+![Consultas Realizadas](./images/consultasRealizadas.png)
 
-	Aquí se puede ver un poco de las consultas realizadas.
+Posteriormente realice la unión a través de la columna CustomerID, para realizar el calculo de la edad de los clientes al momento de realizar la transacción.
 
-	![Consultas Realizadas](./images/consultasRealizadas.png)
+![Creacion De Columna Edad](./images/creacionDeColumnaEdad.png)
 
-	Posteriormente realice la unión a través de la columna CustomerID, para realizar el calculo de la edad de los clientes al momento de realizar la transacción.
+Finalmente llevé la data procesada a un bucket de S3, en la imagen se puede ver que los datos llegaron correctamente formateados y con las columnas tal como las necesitamos.
 
-	![Creacion De Columna Edad](./images/creacionDeColumnaEdad.png)
-
-	Finalmente llevé la data procesada a un bucket de S3, en la imagen se puede ver que los datos llegaron correctamente formateados y con las columnas tal como las necesitamos.
-
-	![Ejecucion En S3](./images/ejecucionEnS3.png)
+![Ejecucion En S3](./images/ejecucionEnS3.png)
 
 
 
