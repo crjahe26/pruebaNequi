@@ -1,6 +1,6 @@
 # Paso 1: Alcance del proyecto y captura de datos.
 
-* Identificar y recopilar los datos que usaras para tu proyecto.<br>
+1. Identificar y recopilar los datos que usaras para tu proyecto.<br>
 El [DataSet](https://www.kaggle.com/datasets/shivamb/bank-customer-segmentation) seleccionado es **Bank Customer Segmentation** contiene datos demográficos y de transacciones de clientes de un banco indio, este dataset tiene información como: 
 - Fecha de nacimiento
 - Género
@@ -10,7 +10,7 @@ El [DataSet](https://www.kaggle.com/datasets/shivamb/bank-customer-segmentation)
 - Tiempo de transacción 
 - Monto en INR
 
-* Explicar para qué casos de uso final deseas preparar los datos, por ejemplo: tabla de análisis, aplicación de fondo, base de datos de fuentes de verdad, etc.<br>
+2. Explicar para qué casos de uso final deseas preparar los datos, por ejemplo: tabla de análisis, aplicación de fondo, base de datos de fuentes de verdad, etc.<br>
 El caso de uso para el que prepararé los datos es para realizar **Análisis de comportamiento de gastos según la edad y género de los clientes**, el objetivo de este caso de uso será encontrar información valiosa sobre los patrones de gastos de diferentes grupos demográficos, esto nos puede ayudar a tomar decisiones estratégicas que podemos relacionar con la oferta de productos y servicios para los clientes.
 
 # Paso 2: Explorar y evaluar los datos, el EDA.
@@ -40,13 +40,13 @@ Todos los pasos anteriores los fui explicando en el notebook mencionado.
 	
 	![Arquitectura](./images/arquitectura.png)
 	<br>
-3. Indique claramente los motivos de la elección de las herramientas y tecnologías para el proyecto.
-	Elegí herramientas como python, google colab porque python es el lenguaje recomendado por el documento de la prueba técnica y porque es un lenguaje que manejo bastante bien, el uso de google colab es debido a que me parece una herramienta sencilla de usar y que estoy acostumbrado a ella.
+3. Indique claramente los motivos de la elección de las herramientas y tecnologías para el proyecto.<br>
+	Elegí herramientas como python, google colab porque python es el lenguaje recomendado por el documento de la prueba técnica y porque es un lenguaje que manejo bastante bien, el uso de google colab es debido a que me parece una herramienta sencilla de usar, que estoy acostumbrado a ella y me da la facilidad de tener un entorno aislado sin mucho esfuerzo.
 	<br>
-	Por otro lado respecto a las tecnologías y herramientas utilizadas para la creación y ejecución del ETL, Amazon S3 ofrece ventajas como una gran escalabilidad, economía y me permite modularidad en la arquitectura, por otro lado el uso de AWS Glue, permite que realice la transformación de los datos de forma sencilla con algunas transformaciones sencillas, pero a la vez me permite usar transformaciones a partir de SQL cosa que AWS Glue Databreaw no me permite, adicionalmente son herramientas que me permiten realizar una buena integración con otras herramientas de AWS como Athena, Redshift o QuickSight, para poder consultar, analizar y visualizar  los datos y también son herramientas con mucha documentación y videos que podrían ayudar en caso de encontrarme con algún imprevisto.
+	Por otro lado respecto a las tecnologías y herramientas utilizadas para la creación y ejecución del ETL, Amazon S3 ofrece ventajas como una gran escalabilidad, economía y me permite modularidad en la arquitectura, por otro lado el uso de AWS Glue, permite que realice la transformación de los datos de forma sencilla con algunas transformaciones sencillas, pero a la vez me permite usar transformaciones a partir de SQL que son un poco más complejas, cosa que AWS Glue Databrew no me permite, adicionalmente son herramientas que me permiten realizar una buena integración con otras herramientas de AWS como Athena para explorar un poco más los datos y QuickSight para visualizar los mismos y también son herramientas que cuentan con mucha documentación y videos que podrían ayudar en caso de encontrarme con algún imprevisto.
 
-4. Proponga con qué frecuencia deben actualizarse los datos y por qué.
-	La frecuencia de actualización de los datos depende de la disponibilidad y la actualización de los mismos, en este caso como estamos hablando de transacciones realizadas por los clientes de un banco lo más recomendable sería tener una actualización lo más cercano al tiempo real, es decir, en intervalos de pocos minutos o hasta segundos, pero en este caso como el objetivo del proyecto es el **Análisis de comportamiento de gastos según la edad y género de los clientes** no es primordial contar con la actualización de manera frecuente, en un principio se podrían realizar análisis con una muestra de los datos y posterior a ello cuando ya se tenga un análisis completamente estructurado, se pueden realizar actualizaciones periódicas.
+4. Proponga con qué frecuencia deben actualizarse los datos y por qué.<br>
+	La frecuencia de actualización de los datos depende de la disponibilidad y la actualización de los mismos, en este caso como estamos hablando de transacciones realizadas por los clientes de un banco lo más recomendable sería tener una actualización lo más cercano al tiempo real, es decir, en intervalos de pocos minutos o hasta segundos, para esto nos podríamos ayudar de los Schedules de los jobs en AWS Glue para ejecutar la transformación de los datos en los intervalos que sea necesario, pero en este caso como el objetivo del proyecto es el **Análisis de comportamiento de gastos según la edad y género de los clientes** no es primordial contar con la actualización de manera frecuente, en un principio se podrían realizar análisis con una muestra de los datos y posterior a ello cuando ya se tenga un análisis completamente estructurado, se pueden realizar actualizaciones periódicas.
 
 # Paso 4: Ejecutar la ETL
 
@@ -115,3 +115,4 @@ Finalmente llevé la data procesada a un bucket de S3, en la imagen se puede ver
 	<br>
 
 	- Si se requiere hacer analítica en tiempo real, ¿cuales componentes cambiaria a su arquitectura propuesta?<br>
+	Para este caso tendríamos que agregar schedules y usar la herramienta de workflow para realizar la ejecución del job cada pocos minutos, de forma que podamos tenenr los datos lo más actualizados posible
