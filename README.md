@@ -78,7 +78,34 @@ Finalmente llevé la data procesada a un bucket de S3, en la imagen se puede ver
 
 ![Ejecucion En S3](./images/ejecucionEnS3.png)
 
+<br>
 
+Para validar la calidad de los datos utilice la funcionalidad de AWS llamada precisamente "Data Quality", con esta funcionalidad realicé la definición de algunas reglas que validan la información arrojada por la tabla generada luego de ejecutar transformaciones.
+
+![Data Quality](./images/calidadDatos.png)
+
+<br>
+
+Para el control de calidad en los datos con la integridad en la base de datos relacional, necesitaría usar efectivamente una base de datos relacional, como RDS por ejemplo, pero para este proyecto en especifico no fue necesario utilizar dicha base de datos y las herramientas utilizadas no proporcionan de manera nativa todas las caracteristicas de control de calidad e integridad que utilizamos en una base de datos relacional.
+<br>
+Pero es importante aclarar que para el caso de los clientes su identificador unico sería el customerID, para el caso de las transacciones el identificador unico sería el transactionID.
+<br>
+De igual manera ambas entidades se unen a través de del customerID, el cual sería una foreign keys en la entidad transacción.
+
+<br>
+En cuanto a la realización de pruebas de unidad para asegurar que se está haciendo lo correcto podríamos regresar a la funcionalidad de AWS llamada "Data Quality" que mencione anteriormente, ya que con esta funcionalidad podemos crear nosotros mismos una seríe de reglas para que se validen apartados especificos en nuestras tablas, como puede ser la existencia de columnas en especifico, unicidad de datos, validación de tipos de datos, entre otras cosas.
+
+![Validación de los datos](./images/validacionDatos.png)
+
+<br>
+
+La validación de fuentes y conteos, la podemos realizar desde Amazon Athena despues de la ejecución de las transformaciones y antes de la misma comparando los datos de origen para garantizar que no haya pérdida de datos durante el proceso de extracción, también podemos hacer conteo de registros para detectar perdida o duplicación de datos durante el ETL, adicionalmente también podemos realizar totalizaciones y sumas de los valores numericos que tenemos para validar diferencias.
+
+<br>
+
+El diccionario de datos lo podemos crear con AWS Glue Data Catalog y validar en Amazon Athena, nos permite tener una visión de la estructura y los atributos de los datos que tenemos.
+
+![Diccionario de datos](./images/diccionarioDeDatos.png)
 
 
 # Paso 5: Completar la redacción del proyecto
@@ -115,4 +142,4 @@ Finalmente llevé la data procesada a un bucket de S3, en la imagen se puede ver
 	<br>
 
 	- Si se requiere hacer analítica en tiempo real, ¿cuales componentes cambiaria a su arquitectura propuesta?<br>
-	Para este caso tendríamos que agregar schedules y usar la herramienta de workflow para realizar la ejecución del job cada pocos minutos, de forma que podamos tenenr los datos lo más actualizados posible
+	Para este caso tendríamos que agregar schedules y usar la herramienta de workflow para realizar la ejecución del job cada pocos minutos, de forma que podamos tener los datos lo más actualizados posible
