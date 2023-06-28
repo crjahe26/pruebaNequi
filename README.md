@@ -142,4 +142,4 @@ El diccionario de datos lo podemos crear con AWS Glue Data Catalog y validar en 
 	<br>
 
 	- Si se requiere hacer analítica en tiempo real, ¿cuales componentes cambiaria a su arquitectura propuesta?<br>
-	Se podría realizar cambios en el almacenamiento para usar Amazon DynamoDB, esta base de datos está diseñada para ofrecer baja latencia y alta velocidad de escritura y lectura entonces es perfecta para analisis en tiempo real.En cuanto al procesamiento de los datos se podría usar AWS Kinesis ya que permite recibir datos continuamente en tiempo real.
+	Se podría realizar cambios en el almacenamiento para usar Amazon DynamoDB, esta base de datos está diseñada para ofrecer baja latencia y alta velocidad de escritura y lectura entonces es perfecta para analisis en tiempo real. En cuanto al procesamiento de los datos se podría usar AWS Kinesis ya que permite recibir datos continuamente en tiempo real.
